@@ -1,3 +1,4 @@
+import sys
 import regex as re
 from tqdm import tqdm
 from .base import Tokenizer, get_stats, merge, merge_hindi
@@ -49,7 +50,7 @@ class BPETokenizer(Tokenizer):
         original_length = len([x for xs in ids for x in xs])
 
         print("Building BPE")
-        for i in tqdm(range(num_merges)):
+        for i in tqdm(range(num_merges), file=sys.stdout):
             # count the number of times every consecutive pair appears
             stats = {}
             for chunk_ids in ids:
