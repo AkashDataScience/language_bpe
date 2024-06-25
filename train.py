@@ -27,11 +27,11 @@ HINDI_WORD_SPLIT_PATTERN = r'([\s\p{L}\p{M}]{2,})([कगतन](?:\p{M}))$'
 
 t0 = time.time()
 # construct the Tokenizer object and kick off verbose training
-if argparse.is_english:
+if args.is_english:
     tokenizer = BPETokenizer()
 else:
     tokenizer = BPETokenizer(pattern=HINDI_SPLIT_PATTERN, word_pattern=HINDI_WORD_SPLIT_PATTERN)
-    
+
 tokenizer.build(text, args.vocab_size, verbose=True)
 # writes two files in the models directory: name.model, and name.vocab
 prefix = os.path.join("models", args.output_file)
