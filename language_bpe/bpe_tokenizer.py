@@ -24,8 +24,9 @@ class BPETokenizer(Tokenizer):
         text_chunks = re.findall(self.compiled_pattern, text)
 
         if self.compiled_pattern_word:
+            print("Spliting hindi words")
             text_chunks_words = []
-            for chunk in text_chunks:
+            for chunk in tqdm(text_chunks):
                 element_chunks = re.findall(self.compiled_pattern_word, chunk)
                 if element_chunks == []:
                     text_chunks_words.append(chunk) 
