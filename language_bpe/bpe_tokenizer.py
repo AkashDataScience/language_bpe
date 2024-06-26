@@ -142,7 +142,7 @@ class BPETokenizer(Tokenizer):
             vocab.update({idx: bytes(list(chr(value).encode('utf-8'))) for idx,value in zip(range(256, 384), range(2304, 2432))})
             for index in tqdm(range(256, 384)):
                 pair = list(vocab[index])
-                ids = [merge_hindi(chunk_ids, pair, index) for chunk_ids in ids]
+                ids = merge_hindi(ids, pair, index)
             chunk_ids = self._encode_chunk(ids)
             ids_list.extend(chunk_ids)
         return ids_list

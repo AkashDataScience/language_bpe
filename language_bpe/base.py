@@ -119,7 +119,7 @@ class Tokenizer:
         # read the model file
         merges = {}
         special_tokens = {}
-        idx = 256
+        idx = 384
         with open(model_file, 'r', encoding="utf-8") as f:
             # read the version
             version = f.readline().strip()
