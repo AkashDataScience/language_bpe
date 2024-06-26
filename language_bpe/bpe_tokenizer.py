@@ -101,10 +101,9 @@ class BPETokenizer(Tokenizer):
         text = text_bytes.decode("utf-8", errors="replace")
         return text
 
-    def _encode_chunk(self, text_bytes):
+    def _encode_chunk(self, ids):
         # return the token ids
         # let's begin. first, convert all bytes to integers in range 0..255
-        ids = list(text_bytes)
         while len(ids) >= 2:
             # find the pair with the lowest merge index
             stats = get_stats(ids)
@@ -124,13 +123,29 @@ class BPETokenizer(Tokenizer):
         """Encoding that ignores any special tokens."""
         # split text into chunks of text by categories defined in regex pattern
         text_chunks = re.findall(self.compiled_pattern, text)
+        if self.compiled_pattern_word:
+            print("Spliting hindi words")
+            text_chunks_words = []
+            for chunk in tqdm(text_chunks):
+                element_chunks = re.findall(self.compiled_pattern_word, chunk)
+                if element_chunks == []:
+                    text_chunks_words.append(chunk) 
+                else:
+                    text_chunks_words.extend(element_chunks[0]) 
+            text_chunks = text_chunks_words
         # all chunks of text are encoded separately, then results are joined
-        ids = []
+        ids_list = []
         for chunk in text_chunks:
             chunk_bytes = chunk.encode("utf-8") # raw bytes
-            chunk_ids = self._encode_chunk(chunk_bytes)
-            ids.extend(chunk_ids)
-        return ids
+            ids = list(chunk_bytes)
+            vocab = {idx: bytes([idx]) for idx in range(256)}
+            vocab.update({idx: bytes(list(chr(value).encode('utf-8'))) for idx,value in zip(range(256, 384), range(2304, 2432))})
+            for index in tqdm(range(256, 384)):
+                pair = list(vocab[index])
+                ids = [merge_hindi(chunk_ids, pair, index) for chunk_ids in ids]
+            chunk_ids = self._encode_chunk(ids)
+            ids_list.extend(chunk_ids)
+        return ids_list
 
     def encode(self, text, allowed_special="none_raise"):
         """
