@@ -67,6 +67,8 @@ Project Link - [ERA V2](https://github.com/AkashDataScience/ERA-V2/tree/master)
 ## Acknowledgments
 This repo is developed using references listed below:
 * [Language Models are Unsupervised Multitask Learners](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
+* [Taylor Swift wikipedia page for English data](https://en.wikipedia.org/wiki/Taylor_Swift)
+* [OPUS CORPUS for Hindi data](https://opus.nlpl.eu/)
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/akash-m-shah/
