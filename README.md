@@ -8,13 +8,11 @@
 
 ## Prerequisites
 * [![Python][Python.py]][python-url]
-* [![Pytorch][PyTorch.tensor]][torch-url]
-* [![Hugging face][HuggingFace.transformers]][huggingface-url]
 
 ## :open_file_folder: Files
 - [**data**](data/)
     - Folder containing data of Hindi and English Languages
-- [**regex_description.ipynb**](regext_description.ipynb)
+- [**regex_description.ipynb**](regex_description.ipynb)
     - This files contains explaination of GPT-4 regex
     - It also contains explaination of Hindi regex used for this project
 - [**base.py**](language_bpe/base.py)
@@ -44,7 +42,7 @@ pip install -r requirements.txt
 
 ## Build tokenizer
 1. Collect text data of desired language(s).
-2. Write regex for that language by following [regex_description.ipynb](regext_description.ipynb)
+2. Write regex for that language by following [regex_description.ipynb](regex_description.ipynb)
 3. Build tokenizer
 
 ```
